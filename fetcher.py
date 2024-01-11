@@ -4,7 +4,7 @@ from datetime import datetime
 
 def run_cmd(cmd):
     # command = f"iperf3 -c {cmd} --json"
-    result = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    result = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     if result.stderr:
         return result.stderr
     else:
