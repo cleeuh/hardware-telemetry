@@ -4,7 +4,7 @@ from datetime import datetime
 
 def run_cmd(cmd):
     # command = f"iperf3 -c {cmd} --json"
-    result = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    result = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, executable='/bin/bash', stderr=subprocess.PIPE)
     if result.stderr:
         return result.stderr.decode('utf-8')
     else:
@@ -26,7 +26,7 @@ class Fetch():
     def memory():
         return run_cmd('cat /proc/meminfo')
     def temperature():
-        return run_cmd("paste <(cat /sys/class/thermal/thermal_zone*/type) <(cat /sys/class/thermal/thermal_zone*/temp)")
+        return run_cmd('paste <(cat /sys/class/thermal/thermal_zone*/type) <(cat /sys/class/thermal/thermal_zone*/temp)')
     def cpu():
         return run_cmd('cat /sys/devices/system/cpu/cpufreq/cpuload/cpu_usage')
     def network():
