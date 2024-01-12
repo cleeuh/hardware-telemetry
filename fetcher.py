@@ -6,9 +6,9 @@ def run_cmd(cmd):
     # command = f"iperf3 -c {cmd} --json"
     result = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     if result.stderr:
-        return result.stderr
+        return result.stderr.decode('utf-8')
     else:
-        return result.stdout
+        return result.stdout.decode('utf-8')
 
 def read_file(path):
     try:
