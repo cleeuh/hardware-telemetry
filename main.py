@@ -1,16 +1,17 @@
 import time
+import json
 import fetcher
 
 def main():
-    # while(True):
-    results = ""
-    results += fetcher.Fetch.time()
-    results += fetcher.Fetch.uptime()
-    results += fetcher.Fetch.memory()
-    results += fetcher.Fetch.temperature()
-    results += fetcher.Fetch.cpu()
-    print(results)
-    time.sleep(0.25)
+    while(True):
+        results = {}
+        results["cur_time"] = fetcher.Fetch.time()
+        results["uptime"]   = fetcher.Fetch.uptime()
+        results["mem"]      = fetcher.Fetch.memory()
+        results["temp"]     =  fetcher.Fetch.temperature()
+        results["cpu_util"] = fetcher.Fetch.cpu(1)
+        print(json.dumps(results, indent=2))
+        time.sleep(0.25)
 
 
 if __name__ == "__main__":
