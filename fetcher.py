@@ -43,8 +43,8 @@ class Fetch():
         temps = cmd = run_cmd('paste <(cat /sys/class/thermal/thermal_zone*/type) <(cat /sys/class/thermal/thermal_zone*/temp)')
 
         try:
-            mems = [mem.split() for mem in mems.strip().split("\n")]
-            mems = {mem[0]:mem[1].strip() for mem in mems}
+            temps = [temp.split() for temp in temps.strip().split("\n")]
+            temps = {temp[0]:temp[1].strip() for temp in temps}
         except:
             return {"error": cmd}
 
