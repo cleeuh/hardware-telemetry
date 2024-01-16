@@ -8,7 +8,7 @@ def main():
         results["cur_time"] = fetcher.Fetch.time()
         results["uptime"]   = fetcher.Fetch.uptime()
         results["mem"]      = fetcher.Fetch.memory()
-        results["temp"]     =  fetcher.Fetch.temperature()
+        results["therm"]     =  fetcher.Fetch.temperature()
         results["cpu_util"] = fetcher.Fetch.cpu(1)
         print(json.dumps(results, indent=2))
         time.sleep(0.25)
