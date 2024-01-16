@@ -1,6 +1,7 @@
 import time
 import json
 import fetcher
+import communications
 
 def main():
     while(True):
@@ -11,6 +12,7 @@ def main():
         results["therm"]     =  fetcher.Fetch.temperature()
         results["cpu_util"] = fetcher.Fetch.cpu(1)
         print(json.dumps(results, indent=2))
+        communications.publish("http://0.0.0.0:12000/api/telemetry", data=results)
         time.sleep(0.25)
 
 
