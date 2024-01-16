@@ -40,15 +40,15 @@ class Fetch():
 
 
     def temperature():
-        temps = cmd = run_cmd('paste <(cat /sys/class/thermal/thermal_zone*/type) <(cat /sys/class/thermal/thermal_zone*/temp)')
+        thermals = cmd = run_cmd('paste <(cat /sys/class/thermal/thermal_zone*/type) <(cat /sys/class/thermal/thermal_zone*/temp)')
 
         try:
-            temps = [temp.split() for temp in temps.strip().split("\n")]
-            temps = {temp[0]:temp[1].strip() for temp in temps}
+            thermals = [thermal.split() for thermal in thermals.strip().split("\n")]
+            thermals = {thermal[0]:int(thermal[1].strip()) for thermal in thermals}
         except:
             return {"error": cmd}
 
-        return temps
+        return thermals
             
 
 
