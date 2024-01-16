@@ -3,9 +3,13 @@ import uuid
 import hashlib
 
 def publish(url, token, data):
-    data["token"] = token
-    results = requests.post(url, json=data)
-    return results
+    try:
+        data["token"] = token
+        results = requests.post(url, json=data)
+        return results
+    except:
+        print(f"Unable to post to server {url}")
+        return None
 
 def generate_idempotent_token():
     system_uuid = str(uuid.getnode())  # Get the hardware address as a 48-bit positive integer
