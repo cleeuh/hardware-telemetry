@@ -7,7 +7,8 @@ def publish(url, token, data):
         data["token"] = token
         results = requests.post(url, json=data)
         return results
-    except:
+    except Exception as e:
+        print(e)
         print(f"Unable to post to server {url}")
         return None
 
