@@ -48,7 +48,7 @@ class Fetch():
         except:
             return {"error": cmd}
 
-        return mems
+        return temps
             
 
 
