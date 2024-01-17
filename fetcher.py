@@ -12,12 +12,14 @@ def run_cmd(cmd):
     else:
         return result.stdout.decode('utf-8')
 
+
 def read_file(path):
     try:
         with open(path) as f:
             return f.read()
     except:
         return "non-specific error"
+
 
 class CPU():
     def calc_delta(cpu_init, cpu_final):
@@ -36,7 +38,6 @@ class CPU():
         for cpu_stats in cpu_delta:
             core_id = cpu_stats[0]
             cpu_stats[0] = cpu_stats[0].replace("cpu", "")
-            print(cpu_stats)
             cpu_stats = [int(stat) for stat in cpu_stats]
             cpu_total = sum(cpu_stats[1:])
             cpu_idle = cpu_stats[4]
@@ -53,6 +54,7 @@ class CPU():
             # guest_nice  = cpu_stat[10]
 
         return utilization
+
 
 class Fetch():
     def time():
@@ -100,7 +102,7 @@ class Fetch():
             # cpu_cur_time = os.path.getctime(file_path)
             cpu_last = json.load(open(file_path))
             cpu_last_time = os.path.getctime(file_path)
-            
+
             json.dump(cpu_cur, open(file_path, 'w'))
 
             cpu_delta = CPU.calc_delta(cpu_last, cpu_cur)[1:]
